@@ -21,7 +21,7 @@ availableStorage = totalStorage - usedStorage
 price = float(re.findall('Price:.*?([0-9.]+) SCP', hostRaw , re.MULTILINE | re.DOTALL)[0][0])
 
 #Theoretically, but likely way to high since growth is very slow
-neededBalanceTheoretically = (availableStorage / 1000) * float(priceRaw[0][0])
+neededBalanceTheoretically = (availableStorage / 1000) * float(price)
 #More likely, 250GB per month at best
 neededBalance = round(price / 4)
 print(f"Needed Balance {neededBalance}/{neededBalanceTheoretically} SCP")
