@@ -9,7 +9,7 @@ with open(f"{path}/forwarder.json") as handle:
 coinsRaw = os.popen("current/spc wallet").read()
 if not "Encrypted, Unlocked" in coinsRaw: exit("Wallet Locked")
 
-balance = float(re.findall('Confirmed Balance:.*?([0-9.]+) SCP', coinsRaw , re.MULTILINE | re.DOTALL)[0][0])
+balance = float(re.findall('Confirmed Balance:.*?([0-9.]+) SCP', coinsRaw , re.MULTILINE | re.DOTALL)[0])
 print(f"Balance {balance} SCP")
 hostRaw = os.popen("current/spc host").read()
 storageRaw = re.findall('Storage:.*?([0-9.]+) (GB|TB).*?([0-9.]+) (GB|TB)', hostRaw , re.MULTILINE | re.DOTALL)
