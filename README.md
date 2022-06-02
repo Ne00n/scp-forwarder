@@ -12,7 +12,7 @@ apt-get install -y git python3 python3-pip && pip3 install Southxchange==1.3
 ```
 git clone https://github.com/Ne00n/scp-forwarder.git && cd scp-forwarder
 cp forwarder.example.json forwarder.json
-sed -i -e 's/address/YOURWALLET/g' config.json
+sed -i -e 's/address/YOURWALLET/g' forwarder.json
 ```
 
 **Test**<br />
