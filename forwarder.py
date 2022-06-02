@@ -12,10 +12,10 @@ if not "Encrypted, Unlocked" in coinsRaw: exit("Wallet Locked")
 balance = float(re.findall('Confirmed Balance:.*?([0-9.]+) SCP', coinsRaw , re.MULTILINE | re.DOTALL)[0][0])
 print(f"Balance {balance} SCP")
 hostRaw = os.popen("current/spc host").read()
-storageRaw = re.findall('Storage:.*?[0-9.]+ (GB|TB).*?([0-9.]+) (GB|TB)', hostRaw , re.MULTILINE | re.DOTALL)[0][0]
+storageRaw = re.findall('Storage:.*?([0-9.]+) (GB|TB).*?([0-9.]+) (GB|TB)', hostRaw , re.MULTILINE | re.DOTALL)
 
 totalStorage = float(storageRaw[0][0]) * 1000 if "TB" in storageRaw[0][1] else float(storageRaw[0][0])
-usedStorage = float(storageRaw[1][0]) * 1000 if "TB" in storageRaw[1][1] else float(storageRaw[0][0])
+usedStorage = float(storageRaw[0][2]) * 1000 if "TB" in storageRaw[0][3] else float(storageRaw[1][0])
 
 availableStorage = totalStorage - usedStorage
 price = float(re.findall('Price:.*?([0-9.]+) SCP', hostRaw , re.MULTILINE | re.DOTALL)[0][0])
