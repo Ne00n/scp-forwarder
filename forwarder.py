@@ -24,7 +24,7 @@ price = float(re.findall('Price:.*?([0-9.]+) SCP', hostRaw , re.MULTILINE | re.D
 neededBalanceTheoretically = (availableStorage / 1000) * float(price)
 #More likely, 250GB per month at best
 neededBalance = round(price / 4)
-print(f"Needed Balance {neededBalance}/{neededBalanceTheoretically} SCP")
+print(f"Needed Balance {neededBalance}/{round(neededBalanceTheoretically,2)} SCP")
 
 availableBalance = balance - neededBalance
 print(f"Available Balance {availableBalance} SCP")
