@@ -1,17 +1,17 @@
 #!/usr/bin/python3
-import json, os
+import json, os, re
 path = os.path.dirname(os.path.realpath(__file__))
 
 print("Loading forwarder.json")
 with open(f"{path}/forwarder.json") as handle:
     config = json.loads(handle.read())
 
-coinsRaw = os.system("current/spc wallet")
+coinsRaw = os.popen("current/spc wallet").read()
 if not "Encrypted, Unlocked" in coinsRaw: exit("Wallet Locked")
 
 balance = float(re.findall('Confirmed Balance:.*?([0-9.]+) SCP', coinsRaw , re.MULTILINE | re.DOTALL)[0][0])
 print(f"Balance {balance} SCP")
-hostRaw = os.system("current/spc host")
+hostRaw = os.popen("current/spc host").read()
 storageRaw = re.findall('Storage:.*?[0-9.]+ (GB|TB).*?([0-9.]+) (GB|TB)', hostRaw , re.MULTILINE | re.DOTALL)[0][0]
 
 totalStorage = float(storageRaw[0][0]) * 1000 if "TB" in storageRaw[0][1] else float(storageRaw[0][0])
